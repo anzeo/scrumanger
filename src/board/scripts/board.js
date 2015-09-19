@@ -4,7 +4,8 @@ angular.module('scrumanger.board').directive('board', function($templateCache){
         restrict: 'E',
         transclude: true,
         scope: {
-            sprint: '@'
+            sprintNr: '@',
+            tasks: '='
         },
         controller: 'BoardController',
         controllerAs: 'Board',

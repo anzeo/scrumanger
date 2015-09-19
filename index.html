@@ -11,10 +11,10 @@
 </head>
 <body>
 
-    <board sprint="1">
-        <lane title="Todo"></lane>
-        <lane title="In Progress"></lane>
-        <lane title="Complete"></lane>
+    <board sprint-nr="1">
+        <lane title="Todo" status="todo"></lane>
+        <lane title="In Progress" status="progress"></lane>
+        <lane title="Done" status="done"></lane>
     </board>
 
 <!-- bower:js -->
@@ -24,13 +24,13 @@
 <!-- inject:js -->
 <script src="src/app.js"></script>
 <script src="src/templates.js"></script>
-<script src="src/board/module.js"></script>
 <script src="src/lane/module.js"></script>
+<script src="src/board/module.js"></script>
 <script src="src/ticket/module.js"></script>
-<script src="src/board/scripts/board-controller.js"></script>
-<script src="src/board/scripts/board.js"></script>
 <script src="src/lane/scripts/lane-controller.js"></script>
 <script src="src/lane/scripts/lane.js"></script>
+<script src="src/board/scripts/board-controller.js"></script>
+<script src="src/board/scripts/board.js"></script>
 <!-- endinject -->
 </body>
 </html>

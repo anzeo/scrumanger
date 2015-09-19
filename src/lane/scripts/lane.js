@@ -2,7 +2,8 @@ angular.module('scrumanger.lane').directive('lane', function($templateCache){
    return {
      restrict: 'E',
        scope: {
-           title: '@'
+           title: '@',
+           status: '@'
        },
        controller: 'LaneController',
        controllerAs: 'Lane',
