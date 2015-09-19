@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.7.0",
     "gulp-inject": "^2.2.0",
     "main-bower-files": "^2.9.0"
   }

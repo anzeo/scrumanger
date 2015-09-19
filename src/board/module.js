@@ -1,1 +1,1 @@
-angular.module('scrumanger.board', []);
+angular.module('scrumanger.board', ['scrumanger.templates']);
