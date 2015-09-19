@@ -1,1 +1,1 @@
-angular.module('scrumanger.lane', []);
+angular.module('scrumanger.lane', ['scrumanger.templates']);

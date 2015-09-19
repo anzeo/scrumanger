@@ -1,1 +1,2 @@
-angular.module("scrumanger.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("board/views/board.html","<div>\r\n    <h1>Sprint {{Board.sprint}}</h1>\r\n    <div ng-transclude></div>\r\n</div>");}]);
+angular.module("scrumanger.templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("board/views/board.html","<div>\r\n    <h1>Sprint {{Board.sprint}}</h1>\r\n    <div ng-transclude></div>\r\n</div>");
+$templateCache.put("lane/views/lane.html","<div class=\"board-lane\">\r\n    <div>{{Lane.title}}</div>\r\n    <div>\r\n\r\n    </div>\r\n</div>");}]);

@@ -5,11 +5,16 @@
     <title>Scrumanger</title>
     <!-- bower:css -->
     <!-- endinject -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="src/lane/styles/lane.css">
+    <!-- endinject -->
 </head>
 <body>
 
     <board sprint="1">
-
+        <lane title="Todo"></lane>
+        <lane title="In Progress"></lane>
+        <lane title="Complete"></lane>
     </board>
 
 <!-- bower:js -->
@@ -24,6 +29,8 @@
 <script src="src/ticket/module.js"></script>
 <script src="src/board/scripts/board-controller.js"></script>
 <script src="src/board/scripts/board.js"></script>
+<script src="src/lane/scripts/lane-controller.js"></script>
+<script src="src/lane/scripts/lane.js"></script>
 <!-- endinject -->
 </body>
 </html>

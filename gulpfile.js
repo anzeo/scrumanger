@@ -6,7 +6,7 @@ var templateCache = require('gulp-angular-templatecache');
 gulp.task('inject', ['templates'], function () {
     return gulp.src('index.html')
         .pipe(inject(gulp.src(bowerFiles(), {read: false}), {relative: true, name: 'bower'}))
-        .pipe(inject(gulp.src('src/**/*.js', {read: false}), {relative: true}))
+        .pipe(inject(gulp.src(['src/**/*.js', 'src/**/*.css'], {read: false}), {relative: true}))
         .pipe(gulp.dest('./'));
 
 });
