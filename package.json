@@ -1,0 +1,16 @@
+{
+  "name": "scrumanger",
+  "version": "1.0.0",
+  "description": "SCRUM management tool",
+  "main": "index.html",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-inject": "^2.2.0",
+    "main-bower-files": "^2.9.0"
+  }
+}

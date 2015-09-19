@@ -1,0 +1,1 @@
+angular.module('scrumanger', ['ui.router', 'scrumanger.board']);
