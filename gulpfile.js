@@ -2,13 +2,15 @@ var gulp = require('gulp');
 var inject = require('gulp-inject');
 var bowerFiles = require('main-bower-files');
 var templateCache = require('gulp-angular-templatecache');
+var watch = require('gulp-watch');
 
 gulp.task('inject', ['templates'], function () {
-    return gulp.src('index.html')
-        .pipe(inject(gulp.src(bowerFiles(), {read: false}), {relative: true, name: 'bower'}))
-        .pipe(inject(gulp.src(['src/**/*.js', 'src/**/*.css'], {read: false}), {relative: true}))
-        .pipe(gulp.dest('./'));
-
+    watch('src/**/*', function(){
+        gulp.src('index.html')
+            .pipe(inject(gulp.src(bowerFiles(), {read: false}), {relative: true, name: 'bower'}))
+            .pipe(inject(gulp.src(['src/**/*.js', 'src/**/*.css'], {read: false}), {relative: true}))
+            .pipe(gulp.dest('./'));
+    });
 });
 
 gulp.task('templates', function(){
@@ -17,4 +19,4 @@ gulp.task('templates', function(){
         .pipe(gulp.dest('./src'))
 });
 
-gulp.task('default', ['templates', 'inject']);
+gulp.task('default', ['inject']);
