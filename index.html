@@ -12,16 +12,12 @@
     <link rel="stylesheet" href="src/ticket/styles/ticket.css">
     <!-- endinject -->
 </head>
-<body ng-controller="DemoCtrl as demo">
+<body>
     <md-toolbar>
         <div class="md-toolbar-tools">Scrumanger</div>
     </md-toolbar>
     <md-content layout-padding>
-        <board sprint-nr="1" tasks="demo.sprint.tasks">
-            <lane title="Todo" status="todo" flex></lane>
-            <lane title="In Progress" status="doing"></lane>
-            <lane title="Done" status="done"></lane>
-        </board>
+        <ui-view></ui-view>
     </md-content>
 
 <!-- bower:js -->
@@ -29,6 +25,7 @@
 <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angular-material/angular-material.js"></script>
 <!-- endinject -->
 <!-- inject:js -->
@@ -36,33 +33,15 @@
 <script src="src/templates.js"></script>
 <script src="src/board/module.js"></script>
 <script src="src/lane/module.js"></script>
+<script src="src/sprint/module.js"></script>
 <script src="src/ticket/module.js"></script>
 <script src="src/board/scripts/board-controller.js"></script>
 <script src="src/board/scripts/board.js"></script>
 <script src="src/lane/scripts/lane-controller.js"></script>
 <script src="src/lane/scripts/lane.js"></script>
+<script src="src/sprint/scripts/sprint-controller.js"></script>
 <script src="src/ticket/scripts/ticket-controller.js"></script>
 <script src="src/ticket/scripts/ticket.js"></script>
 <!-- endinject -->
-<script>
-    angular.module('scrumanger').controller('DemoCtrl', function(){
-        this.sprint = {
-            nr: 1,
-            tasks: [
-                new Task('Eat', 'done'),
-                new Task('Sleep'),
-                new Task('Rave', 'doing'),
-                new Task('Repeat')
-            ]
-        };
-
-        function Task(title, status){
-            var task = this;
-
-            task.title = title;
-            task.status = status || 'todo';
-        }
-    })
-</script>
 </body>
 </html>

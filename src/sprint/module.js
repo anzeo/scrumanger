@@ -1,0 +1,1 @@
+angular.module('scrumanger.sprint', ['scrumanger.board', 'scrumanger.lane']);
