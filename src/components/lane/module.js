@@ -1,0 +1,1 @@
+angular.module('scrumanger.components.lane', ['scrumanger.components.templates', 'scrumanger.components.board', 'scrumanger.components.ticket', 'dndLists']);

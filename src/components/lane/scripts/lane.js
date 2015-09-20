@@ -1,4 +1,4 @@
-angular.module('scrumanger.lane').directive('lane', function ($templateCache) {
+angular.module('scrumanger.components.lane').directive('lane', function ($templateCache) {
     return {
         require: '^board',
         restrict: 'E',

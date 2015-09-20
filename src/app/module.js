@@ -1,4 +1,4 @@
-angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.board', 'scrumanger.lane', 'scrumanger.sprint']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components', 'scrumanger.templates', 'scrumanger.sprint']).config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/sprint');
 

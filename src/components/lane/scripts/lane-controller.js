@@ -1,4 +1,4 @@
-angular.module('scrumanger.lane').controller('LaneController', function(){
+angular.module('scrumanger.components.lane').controller('LaneController', function(){
     var controller = this;
     controller.moveTask = moveTask;
 

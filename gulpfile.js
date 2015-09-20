@@ -10,14 +10,21 @@ gulp.task('inject', ['templates'], function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('templates', function(){
-    return gulp.src('src/**/*.html')
+gulp.task('component-templates', function(){
+    return gulp.src('src/components/**/*.html')
+        .pipe(templateCache('templates.js', {module: 'scrumanger.components.templates', standalone: true}))
+        .pipe(gulp.dest('./src/components'))
+});
+gulp.task('app-templates', function(){
+    return gulp.src('src/app/**/*.html')
         .pipe(templateCache('templates.js', {module: 'scrumanger.templates', standalone: true}))
-        .pipe(gulp.dest('./src'))
+        .pipe(gulp.dest('./src/app'))
 });
 
 gulp.task('watch', function(){
-    gulp.watch(['src/**/*', '!src/templates.js'], ['inject'])
+    gulp.watch(['src/**/*', '!src/**/templates.js'], ['inject'])
 });
+
+gulp.task('templates', ['component-templates', 'app-templates']);
 
 gulp.task('default', ['inject', 'watch']);

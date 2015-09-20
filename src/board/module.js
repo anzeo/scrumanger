@@ -1,1 +1,0 @@
-angular.module('scrumanger.board', ['scrumanger.templates']);

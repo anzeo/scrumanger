@@ -1,4 +1,4 @@
-angular.module('scrumanger.ticket').directive('ticket', function($templateCache){
+angular.module('scrumanger.components.ticket').directive('ticket', function($templateCache){
    return {
        restrict: 'E',
        require: '^lane',

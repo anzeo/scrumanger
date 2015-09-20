@@ -1,4 +1,4 @@
-angular.module('scrumanger.board').directive('board', function($templateCache){
+angular.module('scrumanger.components.board').directive('board', function($templateCache){
 
     return {
         restrict: 'E',
