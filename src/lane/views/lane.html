@@ -1,6 +1,11 @@
 <div>
     <div>{{Lane.title}}</div>
-    <ticket ng-repeat="task in Board.tasks|filter:{status: Lane.status}"
-            title="{{task.title}}">
-    </ticket>
+    <div dnd-list="Board.tasks" dnd-drop="Lane.moveTask(event, index, item)">
+        <ticket ng-repeat="task in Board.tasks|filter:{status: Lane.status}"
+                title="{{task.title}}"
+                dnd-draggable="task"
+                dnd-moved="Board.tasks.splice(Board.tasks.indexOf(task), 1)">
+
+        </ticket>
+    </div>
 </div>
