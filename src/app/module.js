@@ -1,10 +1,11 @@
 angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components', 'scrumanger.templates', 'scrumanger.sprint']).config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/sprint');
 
     $stateProvider
         .state('main', {
             url: '/',
+            abstract: true,
             controller: 'AppController',
             controllerAs: 'App',
             resolve: {
@@ -22,7 +23,7 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             controllerAs: 'Sprint',
             resolve: {
                 activeSprint: function (AppService, root) {
-                    return AppService.get(root._links.sprint);
+                    return AppService.get(root._links.activeSprint);
                 }
             },
             templateProvider: function ($templateCache) {
@@ -30,40 +31,47 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             }
         });
 }).run(function(){
-    var scrumangerVersion = 3;
+    var scrumangerVersion = 1;
     if(parseInt(window.localStorage.getItem('scrumanger.version')) === scrumangerVersion){
         return;
     }
 
+    // set up active sprint
+    var activeSprint = createSprint(1, [
+        createTask('Eat', 'done'),
+        createTask('Sleep'),
+        createTask('Rave', 'doing'),
+        createTask('Repeat')
+    ]);
+
     // set up root
     var root = {
         _links: {
-            sprint: 'api/sprint/1'
-        }
-    };
-    window.localStorage.setItem('api/root', JSON.stringify(root));
-
-    // set up active sprint
-    var activeSprint = {
-        nr: 1,
-        tasks: [
-            new Task('Eat', 'done'),
-            new Task('Sleep'),
-            new Task('Rave', 'doing'),
-            new Task('Repeat')
-        ],
-        _links: {
-            self: 'api/sprint/1'
+            activeSprint: activeSprint._links.self
         }
     };
 
-    function Task(title, status) {
-        var task = this;
-
-        task.title = title;
-        task.status = status || 'todo';
+    function createTask(title, status) {
+        return {
+            title: title,
+            status: status || 'todo'
+        };
     }
 
+    function createSprint(nr, tasks, isActive, isClosed){
+        return {
+            nr: nr,
+            tasks: tasks,
+            isActive: isActive,
+            isClosed: isClosed,
+            _links: {
+                self: 'api/sprint/' + nr
+            }
+        };
+    }
+
+    // write initial data
+    window.localStorage.setItem('api/root', JSON.stringify(root));
     window.localStorage.setItem(activeSprint._links.self, JSON.stringify(activeSprint));
 
     // write version
