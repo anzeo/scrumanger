@@ -1,6 +1,6 @@
 <div class="board-lane">
     <div>{{Lane.title}}</div>
-    <div>
-
+    <div ng-repeat="task in Board.tasks">
+        {{task.title}}
     </div>
 </div>
