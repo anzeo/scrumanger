@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Scrumanger</title>
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <!-- endinject -->
     <!-- inject:css -->
     <link rel="stylesheet" href="src/board/styles/board.css">
@@ -12,17 +13,23 @@
     <!-- endinject -->
 </head>
 <body ng-controller="DemoCtrl as demo">
-    {{demo.sprint|json}}
-
-    <board sprint-nr="1" tasks="demo.sprint.tasks">
-        <lane title="Todo" status="todo"></lane>
-        <lane title="In Progress" status="doing"></lane>
-        <lane title="Done" status="done"></lane>
-    </board>
+    <md-toolbar>
+        <div class="md-toolbar-tools">Scrumanger</div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <board sprint-nr="1" tasks="demo.sprint.tasks">
+            <lane title="Todo" status="todo" flex></lane>
+            <lane title="In Progress" status="doing"></lane>
+            <lane title="Done" status="done"></lane>
+        </board>
+    </md-content>
 
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
 <!-- endinject -->
 <!-- inject:js -->
 <script src="src/app.js"></script>
