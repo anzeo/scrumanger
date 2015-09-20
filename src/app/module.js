@@ -30,7 +30,7 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             }
         });
 }).run(function(){
-    var scrumangerVersion = 2;
+    var scrumangerVersion = 3;
     if(parseInt(window.localStorage.getItem('scrumanger.version')) === scrumangerVersion){
         return;
     }
@@ -51,7 +51,10 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             new Task('Sleep'),
             new Task('Rave', 'doing'),
             new Task('Repeat')
-        ]
+        ],
+        _links: {
+            self: 'api/sprint/1'
+        }
     };
 
     function Task(title, status) {
@@ -61,7 +64,7 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
         task.status = status || 'todo';
     }
 
-    window.localStorage.setItem('api/sprint/1', JSON.stringify(activeSprint));
+    window.localStorage.setItem(activeSprint._links.self, JSON.stringify(activeSprint));
 
     // write version
     window.localStorage.setItem('scrumanger.version', scrumangerVersion);

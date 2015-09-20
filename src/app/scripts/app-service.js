@@ -2,7 +2,8 @@ angular.module('scrumanger').factory('AppService', function($window, $q){
 
     return {
         get: get,
-        post: post
+        post: post,
+        put: post
     };
 
     function get(url){
