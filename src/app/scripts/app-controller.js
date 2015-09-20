@@ -1,5 +1,3 @@
-angular.module('scrumanger').controller('AppController', function(root, $location){
-    this.root = root;
+angular.module('scrumanger').controller('AppController', function(){
 
-    $location.path(root)
 });

@@ -29,12 +29,32 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             templateProvider: function ($templateCache) {
                 return $templateCache.get('sprint/views/sprint.html');
             }
+        })
+        .state('main.plan', {
+            url: 'plan',
+            controller: 'PlanController',
+            controllerAs: 'Plan',
+            resolve: {
+                plan: function(AppService, root){
+                    return AppService.get(root._links.plan);
+                }
+            },
+            templateProvider: function($templateCache){
+                return $templateCache.get('plan/views/plan.html')
+            }
         });
 }).run(function(){
     var scrumangerVersion = 1;
     if(parseInt(window.localStorage.getItem('scrumanger.version')) === scrumangerVersion){
         return;
     }
+
+    // set up backlog
+    var backlog = {
+        _links: {
+            self: 'api/backlog'
+        }
+    };
 
     // set up active sprint
     var activeSprint = createSprint(1, [
@@ -47,7 +67,8 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
     // set up root
     var root = {
         _links: {
-            activeSprint: activeSprint._links.self
+            activeSprint: activeSprint._links.self,
+            plan: backlog._links.self
         }
     };
 
