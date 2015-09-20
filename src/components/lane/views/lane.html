@@ -1,9 +1,15 @@
-<md-list dnd-list="Board.tasks" dnd-drop="Lane.moveTask(event, index, item)">
+<md-list>
     <md-subheader>{{Lane.title}}</md-subheader>
-    <ticket ng-repeat="task in Board.tasks|filter:{status: Lane.status}"
-            title="{{task.title}}"
-            dnd-draggable="task"
-            dnd-moved="Board.tasks.splice(Board.tasks.indexOf(task), 1)">
+    <section dnd-list="Board.tasks" dnd-drop="Lane.moveTask(event, index, item)">
+        <ticket ng-repeat="task in Board.tasks|filter:{status: Lane.status}"
+                title="{{task.title}}"
+                dnd-draggable="task"
+                dnd-moved="Board.tasks.splice(Board.tasks.indexOf(task), 1)">
 
-    </ticket>
+        </ticket>
+        <md-list-item ng-if="!(Board.tasks|filter:{status: Lane.status}).length">
+            No tasks.
+        </md-list-item>
+    </section>
+
 </md-list>
