@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<section layout="row">
+    <md-list flex>
+        <md-subheader>Sprints</md-subheader>
+        <md-list-item ng-repeat="sprint in Plan.plan.sprints">
+            <md-list>
+                <md-subheader>Sprint #{{sprint.nr}}</md-subheader>
+                <md-list-item ng-repeat="task in sprint.tasks">
+                    {{task.title}}
+                </md-list-item>
+            </md-list>
+        </md-list-item>
+    </md-list>
+    <md-list flex>
+        <md-subheader>Backlog</md-subheader>
+        <md-list-item ng-repeat="task in Plan.plan.backlog">
+            {{task.title}}
+        </md-list-item>
+    </md-list>
+</section>

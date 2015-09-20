@@ -49,13 +49,6 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
         return;
     }
 
-    // set up backlog
-    var backlog = {
-        _links: {
-            self: 'api/backlog'
-        }
-    };
-
     // set up active sprint
     var activeSprint = createSprint(1, [
         createTask('Eat', 'done'),
@@ -64,11 +57,21 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
         createTask('Repeat')
     ]);
 
+    // set up product
+    var plan = {
+        backlog: [createTask('Finish code exercise')],
+        sprints: [activeSprint],
+        _links: {
+            self: 'api/plan'
+        }
+    };
+
     // set up root
     var root = {
         _links: {
+            self: 'api/root',
             activeSprint: activeSprint._links.self,
-            plan: backlog._links.self
+            plan: plan._links.self
         }
     };
 
@@ -91,10 +94,14 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
         };
     }
 
+    // clear localStorage
+    localStorage.clear();
+
     // write initial data
-    window.localStorage.setItem('api/root', JSON.stringify(root));
-    window.localStorage.setItem(activeSprint._links.self, JSON.stringify(activeSprint));
+    localStorage.setItem(root._links.self, JSON.stringify(root));
+    localStorage.setItem(activeSprint._links.self, JSON.stringify(activeSprint));
+    localStorage.setItem(plan._links.self, JSON.stringify(plan));
 
     // write version
-    window.localStorage.setItem('scrumanger.version', scrumangerVersion);
+    localStorage.setItem('scrumanger.version', scrumangerVersion);
 });
