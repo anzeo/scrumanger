@@ -7,30 +7,52 @@
     <!-- endinject -->
     <!-- inject:css -->
     <link rel="stylesheet" href="src/lane/styles/lane.css">
+    <link rel="stylesheet" href="src/board/styles/board.css">
+    <link rel="stylesheet" href="src/ticket/styles/ticket.css">
     <!-- endinject -->
 </head>
-<body>
-
-    <board sprint-nr="1">
+<body ng-controller="DemoCtrl as demo">
+    <board sprint-nr="1" tasks="demo.sprint.tasks">
         <lane title="Todo" status="todo"></lane>
-        <lane title="In Progress" status="progress"></lane>
+        <lane title="In Progress" status="doing"></lane>
         <lane title="Done" status="done"></lane>
     </board>
 
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- endinject -->
 <!-- inject:js -->
 <script src="src/app.js"></script>
 <script src="src/templates.js"></script>
-<script src="src/board/module.js"></script>
 <script src="src/lane/module.js"></script>
+<script src="src/board/module.js"></script>
 <script src="src/ticket/module.js"></script>
-<script src="src/board/scripts/board-controller.js"></script>
-<script src="src/board/scripts/board.js"></script>
 <script src="src/lane/scripts/lane-controller.js"></script>
 <script src="src/lane/scripts/lane.js"></script>
+<script src="src/board/scripts/board-controller.js"></script>
+<script src="src/board/scripts/board.js"></script>
+<script src="src/ticket/scripts/ticket-controller.js"></script>
+<script src="src/ticket/scripts/ticket.js"></script>
 <!-- endinject -->
+<script>
+    angular.module('scrumanger').controller('DemoCtrl', function(){
+        this.sprint = {
+            nr: 1,
+            tasks: [
+                new Task('Eat', 'done'),
+                new Task('Sleep'),
+                new Task('Rave', 'doing'),
+                new Task('Repeat')
+            ]
+        };
+
+        function Task(title, status){
+            var task = this;
+
+            task.title = title;
+            task.status = status || 'todo';
+        }
+    })
+</script>
 </body>
 </html>

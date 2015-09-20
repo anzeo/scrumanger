@@ -1,1 +1,1 @@
-angular.module('scrumanger.ticket', []);
+angular.module('scrumanger.ticket', ['scrumanger.templates']);

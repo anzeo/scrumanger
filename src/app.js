@@ -1,1 +1,1 @@
-angular.module('scrumanger', ['ui.router', 'scrumanger.board', 'scrumanger.lane']);
+angular.module('scrumanger', ['scrumanger.board', 'scrumanger.lane']);

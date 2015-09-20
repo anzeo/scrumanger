@@ -1,6 +1,6 @@
-<div class="board-lane">
+<div>
     <div>{{Lane.title}}</div>
-    <div ng-repeat="task in Board.tasks">
-        {{task.title}}
-    </div>
+    <ticket ng-repeat="task in Board.tasks|filter:{status: Lane.status}"
+            title="{{task.title}}">
+    </ticket>
 </div>
