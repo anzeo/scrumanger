@@ -44,7 +44,7 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             }
         });
 }).run(function(){
-    var scrumangerVersion = 1;
+    var scrumangerVersion = 2;
     if(parseInt(window.localStorage.getItem('scrumanger.version')) === scrumangerVersion){
         return;
     }
@@ -60,7 +60,9 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
     // set up product
     var plan = {
         backlog: [createTask('Finish code exercise')],
-        sprints: [activeSprint],
+        _embedded: {
+            sprints: [activeSprint]
+        },
         _links: {
             self: 'api/plan'
         }

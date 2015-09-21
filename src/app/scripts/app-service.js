@@ -1,4 +1,4 @@
-angular.module('scrumanger').factory('AppService', function($window, $q){
+angular.module('scrumanger').factory('AppService', function ($window, $q) {
 
     return {
         get: get,
@@ -6,19 +6,44 @@ angular.module('scrumanger').factory('AppService', function($window, $q){
         put: post
     };
 
-    function get(url){
+    function get(url) {
         var deferred = $q.defer();
 
-        deferred.resolve(JSON.parse($window.localStorage.getItem(url)));
+        var item = JSON.parse($window.localStorage.getItem(url));
+
+        if (item._embedded && item._embedded.sprints){
+            var sprintPromises = [];
+            item._embedded.sprints.forEach(function(sprint, index, array){
+                sprintPromises.push(get(sprint._links.self).then(function(data){
+                    array[index] = data;
+                }));
+            });
+            $q.all(sprintPromises).then(function(){
+                deferred.resolve(item);
+            });
+        } else {
+            deferred.resolve(item);
+        }
 
         return deferred.promise;
     }
 
-    function post(url, body){
+    function post(url, body) {
         var deferred = $q.defer();
+
         $window.localStorage.setItem(url, JSON.stringify(body));
-        deferred.resolve(body);
+        if (body._embedded && body._embedded.sprints) {
+            var sprintPromises = [];
+            body._embedded.sprints.forEach(function (sprint) {
+                sprintPromises.push(post(sprint._links.self, sprint));
+            });
+            $q.all(sprintPromises).then(function () {
+                deferred.resolve(body);
+            });
+        } else {
+            deferred.resolve(body);
+        }
+
         return deferred.promise;
     }
-
 });

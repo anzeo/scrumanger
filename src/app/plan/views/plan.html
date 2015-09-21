@@ -1,7 +1,7 @@
 <section layout="row">
     <md-list flex>
         <md-subheader>Sprints</md-subheader>
-        <md-list-item ng-repeat="sprint in Plan.plan.sprints">
+        <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints">
             <md-list>
                 <md-subheader>Sprint #{{sprint.nr}}</md-subheader>
                 <section dnd-list="sprint.tasks">
