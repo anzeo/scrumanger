@@ -5,6 +5,7 @@
             <i class="fa fa-plus"></i>
             <md-tooltip>Add task</md-tooltip>
         </md-button>
+        <ng-transclude></ng-transclude>
     </md-subheader>
     <section dnd-list="TaskList.list">
         <md-list-item ng-repeat="task in TaskList.list"

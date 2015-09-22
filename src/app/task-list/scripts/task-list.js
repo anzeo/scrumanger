@@ -1,6 +1,7 @@
 angular.module('scrumanger.taskList').directive('taskList', function($templateCache){
     return {
         restrict: 'E',
+        transclude: true,
         scope: {
             list: '=',
             title: '@'
