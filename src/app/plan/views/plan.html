@@ -8,32 +8,8 @@
             </md-button>
         </md-subheader>
         <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints">
-            <md-list>
-                <md-subheader>Sprint #{{sprint.nr}}</md-subheader>
-                <section dnd-list="sprint.tasks">
-                    <md-list-item ng-repeat="task in sprint.tasks"
-                                  dnd-draggable="task"
-                                  dnd-moved="sprint.tasks.splice($index, 1)">
-                        {{task.title}}
-                    </md-list-item>
-                    <md-list-item ng-if="!sprint.tasks.length">
-                        No tasks.
-                    </md-list-item>
-                </section>
-            </md-list>
+            <task-list title="Sprint #{{sprint.nr}}" list="sprint.tasks"></task-list>
         </md-list-item>
     </md-list>
-    <md-list flex>
-        <md-subheader>Backlog</md-subheader>
-        <section dnd-list="Plan.plan.backlog">
-            <md-list-item ng-repeat="task in Plan.plan.backlog"
-                          dnd-draggable="task"
-                          dnd-moved="Plan.plan.backlog.splice($index, 1)">
-                {{task.title}}
-            </md-list-item>
-            <md-list-item ng-if="!Plan.plan.backlog.length">
-                No tasks.
-            </md-list-item>
-        </section>
-    </md-list>
+    <task-list list="Plan.plan.backlog" title="Backlog" flex></task-list>
 </section>

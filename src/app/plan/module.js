@@ -1,0 +1,1 @@
+angular.module('scrumanger.plan', ['scrumanger.components.taskList']);

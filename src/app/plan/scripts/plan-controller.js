@@ -1,7 +1,8 @@
-angular.module('scrumanger').controller('PlanController', function($scope, AppService, plan){
+angular.module('scrumanger.plan').controller('PlanController', function($scope, AppService, AppFactory, plan){
     var controller = this;
 
     controller.addSprint = addSprint;
+    controller.addTask = addTask;
 
     controller.plan = plan;
 
@@ -19,5 +20,9 @@ angular.module('scrumanger').controller('PlanController', function($scope, AppSe
         }).then(function(sprint){
             controller.plan._embedded.sprints.push(sprint);
         });
+    }
+
+    function addTask(sprintOrBacklog, taskName){
+        sprintOrBacklog.tasks.push(Appfactory.createTask(taskName));
     }
 });
