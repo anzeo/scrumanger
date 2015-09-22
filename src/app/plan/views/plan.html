@@ -1,6 +1,12 @@
 <section layout="row">
     <md-list flex>
-        <md-subheader>Sprints</md-subheader>
+        <md-subheader>
+            Sprints
+            <md-button class="md-icon-button md-primary" ng-click="Plan.addSprint()">
+                <i class="fa fa-plus"></i>
+                <md-tooltip>Add sprint</md-tooltip>
+            </md-button>
+        </md-subheader>
         <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints">
             <md-list>
                 <md-subheader>Sprint #{{sprint.nr}}</md-subheader>

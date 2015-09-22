@@ -43,28 +43,29 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
                 return $templateCache.get('plan/views/plan.html')
             }
         });
-}).run(function(){
-    var scrumangerVersion = 2;
+}).run(function(AppFactory){
+    var scrumangerVersion = 6;
     if(parseInt(window.localStorage.getItem('scrumanger.version')) === scrumangerVersion){
         return;
     }
 
     // set up active sprint
-    var activeSprint = createSprint(1, [
-        createTask('Eat', 'done'),
-        createTask('Sleep'),
-        createTask('Rave', 'doing'),
-        createTask('Repeat')
+    var activeSprint = AppFactory.createSprint(1, [
+        AppFactory.createTask('Eat', 'done'),
+        AppFactory.createTask('Sleep'),
+        AppFactory.createTask('Rave', 'doing'),
+        AppFactory.createTask('Repeat')
     ]);
 
     // set up product
     var plan = {
-        backlog: [createTask('Finish code exercise')],
+        backlog: [AppFactory.createTask('Finish code exercise')],
         _embedded: {
             sprints: [activeSprint]
         },
         _links: {
-            self: 'api/plan'
+            self: 'api/plan',
+            addSprint: 'api/sprint'
         }
     };
 
@@ -76,25 +77,6 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             plan: plan._links.self
         }
     };
-
-    function createTask(title, status) {
-        return {
-            title: title,
-            status: status || 'todo'
-        };
-    }
-
-    function createSprint(nr, tasks, isActive, isClosed){
-        return {
-            nr: nr,
-            tasks: tasks,
-            isActive: isActive,
-            isClosed: isClosed,
-            _links: {
-                self: 'api/sprint/' + nr
-            }
-        };
-    }
 
     // clear localStorage
     localStorage.clear();

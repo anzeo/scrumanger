@@ -1,9 +1,9 @@
-angular.module('scrumanger').factory('AppService', function ($window, $q) {
+angular.module('scrumanger').factory('AppService', function ($window, $q, AppFactory) {
 
     return {
         get: get,
         post: post,
-        put: post
+        put: put
     };
 
     function get(url) {
@@ -28,14 +28,27 @@ angular.module('scrumanger').factory('AppService', function ($window, $q) {
         return deferred.promise;
     }
 
-    function post(url, body) {
+    function post(url, body){
+        var deferred = $q.defer();
+
+        // We're only 'POST'ing sprints, so this is a shortcut :)
+        var sprint = AppFactory.createSprint(body.nr);
+        put(sprint._links.self, sprint);
+
+        deferred.resolve(sprint);
+
+        return deferred.promise;
+
+    }
+
+    function put(url, body) {
         var deferred = $q.defer();
 
         $window.localStorage.setItem(url, JSON.stringify(body));
         if (body._embedded && body._embedded.sprints) {
             var sprintPromises = [];
             body._embedded.sprints.forEach(function (sprint) {
-                sprintPromises.push(post(sprint._links.self, sprint));
+                sprintPromises.push(put(sprint._links.self, sprint));
             });
             $q.all(sprintPromises).then(function () {
                 deferred.resolve(body);
@@ -46,4 +59,6 @@ angular.module('scrumanger').factory('AppService', function ($window, $q) {
 
         return deferred.promise;
     }
+
+
 });
