@@ -1,1 +1,0 @@
-angular.module('scrumanger.components.taskList', ['dndLists']);
