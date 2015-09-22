@@ -7,7 +7,7 @@
                 <md-tooltip>Add sprint</md-tooltip>
             </md-button>
         </md-subheader>
-        <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints">
+        <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints| orderBy:'!isActive'">
             <task-list title="Sprint #{{sprint.nr}} {{sprint.isActive ? '(active)' : ''}}" list="sprint.tasks" disable-add="sprint.isClosed">
                 <md-button class="md-icon-button md-warn" ng-if="sprint.isActive" ng-click="Plan.closeSprint(sprint)">
                     <i class="fa fa-stop"></i>
