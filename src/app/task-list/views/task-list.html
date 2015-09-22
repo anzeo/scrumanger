@@ -6,8 +6,15 @@
             <md-tooltip>Add task</md-tooltip>
         </md-button>
         <ng-transclude></ng-transclude>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="TaskList.expanded = !TaskList.expanded">
+            <i class="fa" ng-class="{'fa-chevron-up': TaskList.expanded, 'fa-chevron-down': !TaskList.expanded}"></i>
+            <md-tooltip>
+                {{TaskList.collapsed ? 'Expand' : 'Collapse'}}
+            </md-tooltip>
+        </md-button>
     </md-subheader>
-    <section dnd-list="TaskList.list" dnd-disable-if="TaskList.disableAdd()">
+    <section ng-if="TaskList.expanded" dnd-list="TaskList.list" dnd-disable-if="TaskList.disableAdd()">
         <md-list-item ng-repeat="task in TaskList.list"
                       dnd-draggable="task"
                       dnd-disable-if="TaskList.disableAdd()"
