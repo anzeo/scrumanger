@@ -1,8 +1,9 @@
-angular.module('scrumanger.plan').controller('PlanController', function($scope, AppService, AppFactory, plan){
+angular.module('scrumanger.plan').controller('PlanController', function($scope, $state, AppService, AppFactory, plan){
     var controller = this;
 
     controller.addSprint = addSprint;
     controller.closeSprint = closeSprint;
+    controller.startSprint = startSprint;
 
     controller.plan = plan;
 
@@ -36,5 +37,10 @@ angular.module('scrumanger.plan').controller('PlanController', function($scope, 
         sprint.tasks = finishedTasks;
 
         controller.plan.backlog = controller.plan.backlog.concat(unfinishedTasks);
+    }
+
+    function startSprint(sprint){
+        sprint.isActive = true;
+        $state.go("main.sprint");
     }
 });

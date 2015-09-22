@@ -13,6 +13,10 @@
                     <i class="fa fa-stop"></i>
                     <md-tooltip>Close sprint</md-tooltip>
                 </md-button>
+                <md-button class="md-icon-button md-primary" ng-if="!sprint.isActive && !sprint.isClosed" ng-click="Plan.startSprint(sprint)">
+                    <i class="fa fa-play"></i>
+                    <md-tooltip>Start sprint</md-tooltip>
+                </md-button>
             </task-list>
         </md-list-item>
     </md-list>
