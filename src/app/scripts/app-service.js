@@ -3,7 +3,8 @@ angular.module('scrumanger').factory('AppService', function ($window, $q, AppFac
     return {
         get: get,
         post: post,
-        put: put
+        put: put,
+        setActiveSprint: setActiveSprint
     };
 
     function get(url) {
@@ -61,4 +62,14 @@ angular.module('scrumanger').factory('AppService', function ($window, $q, AppFac
     }
 
 
+    function setActiveSprint(sprintUri){
+        var deferred = $q.defer();
+        get('api/root').then(function(root){
+            root._links.activeSprint =sprintUri;
+            put(root._links.self, root).then(function(){
+                deferred.resolve();
+            });
+        });
+        return deferred.promise;
+    }
 });

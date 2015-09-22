@@ -8,11 +8,6 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             abstract: true,
             controller: 'AppController',
             controllerAs: 'App',
-            resolve: {
-                root: function(AppService){
-                    return AppService.get('api/root');
-                }
-            },
             templateProvider: function($templateCache){
                 return $templateCache.get('views/app.html');
             }
@@ -22,8 +17,11 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             controller: 'SprintController',
             controllerAs: 'Sprint',
             resolve: {
-                activeSprint: function (AppService, root) {
-                    return AppService.get(root._links.activeSprint);
+                activeSprint: function (AppService) {
+                    return AppService.get('api/root').then(function(root){
+
+                        return root._links.activeSprint ? AppService.get(root._links.activeSprint) : undefined;
+                    });
                 }
             },
             templateProvider: function ($templateCache) {
@@ -35,8 +33,10 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
             controller: 'PlanController',
             controllerAs: 'Plan',
             resolve: {
-                plan: function(AppService, root){
-                    return AppService.get(root._links.plan);
+                plan: function(AppService){
+                    return AppService.get('api/root').then(function(root){
+                        return AppService.get(root._links.plan);
+                    });
                 }
             },
             templateProvider: function($templateCache){

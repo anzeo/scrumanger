@@ -11,9 +11,13 @@ angular.module('scrumanger.plan').controller('PlanController', function($scope, 
         return JSON.stringify(controller.plan);
     }, function(newValue, oldValue){
         if(oldValue && oldValue !== newValue){
-            AppService.put(controller.plan._links.self, controller.plan);
+            savePlan();
         }
     });
+
+    function savePlan(){
+        AppService.put(controller.plan._links.self, controller.plan);
+    }
 
     function addSprint(){
         AppService.post(controller.plan._links.addSprint, {
@@ -37,10 +41,16 @@ angular.module('scrumanger.plan').controller('PlanController', function($scope, 
         sprint.tasks = finishedTasks;
 
         controller.plan.backlog = controller.plan.backlog.concat(unfinishedTasks);
+
+        AppService.setActiveSprint();
     }
 
     function startSprint(sprint){
         sprint.isActive = true;
-        $state.go("main.sprint");
+        savePlan();
+
+        AppService.setActiveSprint(sprint._links.self).then(function(){
+            $state.go("main.sprint");
+        });
     }
 });
