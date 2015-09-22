@@ -4,7 +4,8 @@ angular.module('scrumanger.taskList').directive('taskList', function($templateCa
         transclude: true,
         scope: {
             list: '=',
-            title: '@'
+            title: '@',
+            disableAdd: '&'
         },
         controller: 'TaskListController',
         controllerAs: 'TaskList',

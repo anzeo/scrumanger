@@ -55,7 +55,7 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
         AppFactory.createTask('Sleep'),
         AppFactory.createTask('Rave', 'doing'),
         AppFactory.createTask('Repeat')
-    ]);
+    ], true);
 
     // set up product
     var plan = {

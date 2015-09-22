@@ -2,6 +2,7 @@ angular.module('scrumanger.plan').controller('PlanController', function($scope, 
     var controller = this;
 
     controller.addSprint = addSprint;
+    controller.closeSprint = closeSprint;
 
     controller.plan = plan;
 
@@ -19,5 +20,21 @@ angular.module('scrumanger.plan').controller('PlanController', function($scope, 
         }).then(function(sprint){
             controller.plan._embedded.sprints.push(sprint);
         });
+    }
+
+    function closeSprint(sprint){
+        sprint.isActive = false;
+        sprint.isClosed = true;
+
+        var finishedTasks = sprint.tasks.filter(function(task){
+            return task.status === 'done';
+        });
+        var unfinishedTasks = sprint.tasks.filter(function(task){
+           return task.status !== 'done';
+        });
+
+        sprint.tasks = finishedTasks;
+
+        controller.plan.backlog = controller.plan.backlog.concat(unfinishedTasks);
     }
 });

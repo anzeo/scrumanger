@@ -8,8 +8,13 @@
             </md-button>
         </md-subheader>
         <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints">
-            <task-list title="Sprint #{{sprint.nr}}" list="sprint.tasks"></task-list>
+            <task-list title="Sprint #{{sprint.nr}} {{sprint.isActive ? '(active)' : ''}}" list="sprint.tasks" disable-add="!sprint.isActive">
+                <md-button class="md-icon-button md-warn" ng-if="sprint.isActive" ng-click="Plan.closeSprint(sprint)">
+                    <i class="fa fa-stop"></i>
+                    <md-tooltip>Close sprint</md-tooltip>
+                </md-button>
+            </task-list>
         </md-list-item>
     </md-list>
-    <task-list list="Plan.plan.backlog" title="Backlog" flex></task-list>
+    <task-list title="Backlog" list="Plan.plan.backlog" flex></task-list>
 </section>

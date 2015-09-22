@@ -1,7 +1,7 @@
 <md-list>
     <md-subheader>
         {{TaskList.title}}
-        <md-button class="md-icon-button md-primary" ng-click="TaskList.addTask()">
+        <md-button ng-hide="TaskList.disableAdd()" class="md-icon-button md-primary" ng-click="TaskList.addTask()">
             <i class="fa fa-plus"></i>
             <md-tooltip>Add task</md-tooltip>
         </md-button>
