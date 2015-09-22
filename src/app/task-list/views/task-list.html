@@ -7,9 +7,10 @@
         </md-button>
         <ng-transclude></ng-transclude>
     </md-subheader>
-    <section dnd-list="TaskList.list">
+    <section dnd-list="TaskList.list" dnd-disable-if="TaskList.disableAdd()">
         <md-list-item ng-repeat="task in TaskList.list"
                       dnd-draggable="task"
+                      dnd-disable-if="TaskList.disableAdd()"
                       dnd-moved="TaskList.list.splice($index, 1)">
             {{task.title}}
         </md-list-item>
