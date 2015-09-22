@@ -1,0 +1,25 @@
+<md-dialog>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add task</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="AddTaskDialog.cancel()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <input ng-model="AddTaskDialog.taskName" ng-required="true" placeholder="name">
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-disabled="!AddTaskDialog.taskName" ng-click="AddTaskDialog.ok()">
+                Add
+            </md-button>
+            <md-button ng-click="AddTaskDialog.cancel()">
+                Cancel
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
