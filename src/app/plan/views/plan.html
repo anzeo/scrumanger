@@ -19,7 +19,7 @@
     <section flex layout="column">
         <task-list layout="column" ng-repeat="sprint in Plan.plan._embedded.sprints|filter:{isClosed: Plan.showClosedSprints} |orderBy:'!isActive'"
                    title="Sprint #{{sprint.nr}} {{sprint.isActive ? '(active)' : ''}}" list="sprint.tasks"
-                   disable-add="sprint.isClosed">
+                   disable-add="sprint.isClosed" expanded="sprint.isActive">
             <md-button class="md-icon-button md-warn" ng-if="sprint.isActive" ng-click="Plan.closeSprint(sprint)">
                 <i class="fa fa-stop"></i>
                 <md-tooltip>Close sprint</md-tooltip>
@@ -31,5 +31,5 @@
             </md-button>
         </task-list>
     </section>
-    <task-list title="Backlog" list="Plan.plan.backlog" flex></task-list>
+    <task-list title="Backlog" list="Plan.plan.backlog" flex expanded="true"></task-list>
 </section>
