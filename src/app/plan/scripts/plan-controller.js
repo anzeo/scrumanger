@@ -6,6 +6,7 @@ angular.module('scrumanger.plan').controller('PlanController', function($scope, 
     controller.startSprint = startSprint;
 
     controller.plan = plan;
+    controller.showClosedSprints = false;
 
     $scope.$watch(function(){
         return JSON.stringify(controller.plan);

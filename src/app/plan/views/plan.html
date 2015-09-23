@@ -1,24 +1,35 @@
 <section layout="row">
-    <md-list flex>
-        <md-subheader>
-            Sprints
+    <md-toolbar flex layout="row">
+        <div class="md-toolbar-tools">
+            <h1>Sprints</h1>
             <md-button class="md-icon-button md-primary" ng-click="Plan.addSprint()">
                 <i class="fa fa-plus"></i>
                 <md-tooltip>Add sprint</md-tooltip>
             </md-button>
-        </md-subheader>
-        <md-list-item ng-repeat="sprint in Plan.plan._embedded.sprints| orderBy:'!isActive'">
-            <task-list title="Sprint #{{sprint.nr}} {{sprint.isActive ? '(active)' : ''}}" list="sprint.tasks" disable-add="sprint.isClosed">
-                <md-button class="md-icon-button md-warn" ng-if="sprint.isActive" ng-click="Plan.closeSprint(sprint)">
-                    <i class="fa fa-stop"></i>
-                    <md-tooltip>Close sprint</md-tooltip>
-                </md-button>
-                <md-button class="md-icon-button md-primary" ng-if="!sprint.isActive && !sprint.isClosed" ng-click="Plan.startSprint(sprint)">
-                    <i class="fa fa-play"></i>
-                    <md-tooltip>Start sprint</md-tooltip>
-                </md-button>
-            </task-list>
-        </md-list-item>
-    </md-list>
+        </div>
+        <md-switch aria-label="toggle sprint visibility" ng-model="Plan.showClosedSprints">Show closed sprints</md-switch>
+    </md-toolbar>
+    <md-toolbar class="md-accent" flex>
+        <div class="md-toolbar-tools">
+            <h1>Backlog</h1>
+        </div>
+    </md-toolbar>
+</section>
+<section layout="row">
+    <section flex layout="column">
+        <task-list layout="column" ng-repeat="sprint in Plan.plan._embedded.sprints|filter:{isClosed: Plan.showClosedSprints} |orderBy:'!isActive'"
+                   title="Sprint #{{sprint.nr}} {{sprint.isActive ? '(active)' : ''}}" list="sprint.tasks"
+                   disable-add="sprint.isClosed">
+            <md-button class="md-icon-button md-warn" ng-if="sprint.isActive" ng-click="Plan.closeSprint(sprint)">
+                <i class="fa fa-stop"></i>
+                <md-tooltip>Close sprint</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button md-primary" ng-if="!sprint.isActive && !sprint.isClosed"
+                       ng-click="Plan.startSprint(sprint)">
+                <i class="fa fa-play"></i>
+                <md-tooltip>Start sprint</md-tooltip>
+            </md-button>
+        </task-list>
+    </section>
     <task-list title="Backlog" list="Plan.plan.backlog" flex></task-list>
 </section>
