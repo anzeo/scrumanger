@@ -1,4 +1,4 @@
-angular.module('scrumanger.taskList').directive('taskList', function($templateCache){
+angular.module('scrumanger.components.taskList').directive('taskList', function($templateCache){
     return {
         restrict: 'E',
         transclude: true,

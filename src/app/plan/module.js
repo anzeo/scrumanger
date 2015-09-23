@@ -1,1 +1,1 @@
-angular.module('scrumanger.plan', ['scrumanger.taskList']);
+angular.module('scrumanger.plan', ['scrumanger.components.taskList']);

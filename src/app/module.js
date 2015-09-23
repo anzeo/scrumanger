@@ -1,4 +1,4 @@
-angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components', 'scrumanger.templates', 'scrumanger.sprint', 'scrumanger.plan']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.main', 'scrumanger.components', 'scrumanger.templates', 'scrumanger.sprint', 'scrumanger.plan']).config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/sprint');
 
@@ -6,10 +6,10 @@ angular.module('scrumanger', ['ngMaterial', 'ui.router', 'scrumanger.components'
         .state('main', {
             url: '/',
             abstract: true,
-            controller: 'AppController',
-            controllerAs: 'App',
+            controller: 'MainController',
+            controllerAs: 'Main',
             templateProvider: function($templateCache){
-                return $templateCache.get('views/app.html');
+                return $templateCache.get('main/views/main.html');
             }
         })
         .state('main.sprint', {

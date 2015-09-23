@@ -1,4 +1,4 @@
-angular.module('scrumanger.taskList').controller('TaskListController', function($mdDialog, AppFactory){
+angular.module('scrumanger.components.taskList').controller('TaskListController', function($mdDialog, AppFactory){
     var controller = this;
     controller.addTask = addTask;
 

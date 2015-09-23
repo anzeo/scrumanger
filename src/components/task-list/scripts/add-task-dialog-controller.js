@@ -1,4 +1,4 @@
-angular.module('scrumanger.taskList').controller('AddTaskDialogController', function($mdDialog){
+angular.module('scrumanger.components.taskList').controller('AddTaskDialogController', function($mdDialog){
 
     var controller = this;
     controller.ok = ok;
