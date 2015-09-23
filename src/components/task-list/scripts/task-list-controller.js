@@ -1,6 +1,7 @@
 angular.module('scrumanger.components.taskList').controller('TaskListController', function($mdDialog, AppFactory){
     var controller = this;
     controller.addTask = addTask;
+    controller.isExpanded = controller.expanded();
 
     function addTask(){
         $mdDialog.show({

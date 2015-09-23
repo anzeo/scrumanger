@@ -7,14 +7,14 @@
         </md-button>
         <ng-transclude></ng-transclude>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="TaskList.expanded = !TaskList.expanded">
-            <i class="fa" ng-class="{'fa-chevron-up': TaskList.expanded, 'fa-chevron-down': !TaskList.expanded}"></i>
+        <md-button class="md-icon-button" ng-click="TaskList.isExpanded = !TaskList.isExpanded">
+            <i class="fa" ng-class="{'fa-chevron-up': TaskList.isExpanded, 'fa-chevron-down': !TaskList.isExpanded}"></i>
             <md-tooltip>
-                {{TaskList.collapsed ? 'Expand' : 'Collapse'}}
+                {{TaskList.isExpanded ? 'Collapse' : 'Expand' }}
             </md-tooltip>
         </md-button>
     </md-subheader>
-    <section ng-if="TaskList.expanded" dnd-list="TaskList.list" dnd-disable-if="TaskList.disableAdd()">
+    <section ng-if="TaskList.isExpanded" dnd-list="TaskList.list" dnd-disable-if="TaskList.disableAdd()">
         <md-list-item ng-repeat="task in TaskList.list"
                       dnd-draggable="task"
                       dnd-disable-if="TaskList.disableAdd()"

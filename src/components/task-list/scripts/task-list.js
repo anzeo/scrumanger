@@ -6,7 +6,7 @@ angular.module('scrumanger.components.taskList').directive('taskList', function(
             list: '=',
             title: '@',
             disableAdd: '&',
-            expanded: '='
+            expanded: '&'
         },
         controller: 'TaskListController',
         controllerAs: 'TaskList',
