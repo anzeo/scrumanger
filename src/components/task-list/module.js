@@ -1,1 +1,1 @@
-angular.module('scrumanger.components.taskList', ['dndLists']);
+angular.module('scrumanger.components.taskList', ['dndLists', 'ngMaterial']);
