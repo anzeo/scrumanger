@@ -1,8 +1,8 @@
 <div ng-if="!Sprint.active" flex layout="row" layout-align="center">
     <i class="fa fa-info-circle"></i> No active sprint
 </div>
-<board ng-if="Sprint.active" sprint-nr="{{Sprint.active.nr}}" tasks="Sprint.active.tasks">
-    <lane title="Todo" status="todo" flex></lane>
-    <lane title="In Progress" status="doing"></lane>
-    <lane title="Done" status="done"></lane>
+<board layout-fill flex ng-if="Sprint.active" sprint-nr="{{Sprint.active.nr}}" tasks="Sprint.active.tasks">
+    <lane title="Todo" status="todo" flex layout="column" layout-fill></lane>
+    <lane title="In Progress" status="doing" flex></lane>
+    <lane title="Done" status="done" flex></lane>
 </board>
